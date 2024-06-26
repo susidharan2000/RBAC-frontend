@@ -1,5 +1,3 @@
-import { async } from '@firebase/util';
-import { current } from '@reduxjs/toolkit';
 import axios from 'axios';
 import React, { useState,useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -17,7 +15,7 @@ const AssignRole = () => {
     },[]);
     const fetchdata = async() =>{
         try{
-            const response = await axios.get(`http://localhost:4000/api/user/getuserbyid/${userId}`,{
+            const response = await axios.get(`https://rbac-backend-dxeh.onrender.com/api/user/getuserbyid/${userId}`,{
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${localStorage.getItem("Token")}`
@@ -37,7 +35,7 @@ const AssignRole = () => {
     const handleClickSubmit = async(e) => {
         e.preventDefault();
         try{
-            const response = await axios.put('http://localhost:4000/api/user/updaterole',formData,{
+            const response = await axios.put('https://rbac-backend-dxeh.onrender.com/api/user/updaterole',formData,{
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${localStorage.getItem("Token")}`
@@ -102,7 +100,7 @@ const AssignRole = () => {
                         className=" bg-gray-700 text-white rounded"
                         
                     >
-                        <option value="guest">Guest</option>
+                        <option value="admin">Admin</option>
                         <option value="developer">Developer</option>
                         <option value="qaengineer">QA Engineer</option>
                         <option value="supportspecialist">Support Specialist</option>

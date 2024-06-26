@@ -22,7 +22,6 @@ import {
   HiOutlineExclamationCircle,
 } from "react-icons/hi";
 import axios from "axios";
-import Password from "antd/es/input/Password";
 const DashboardProfile = () => {
   const { currentUser, loading, error } = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -117,7 +116,7 @@ const [passwordMatch, setPasswordMatch] = useState(true); // State to track pass
       dispatch(UpadateStart());
       const token = localStorage.getItem("Token"); // Retrieve token from localStorage
       const response = await axios.put(
-        `http://localhost:4000/api/user/updateprofile/${currentUser.rest._id}`,
+        `https://rbac-backend-dxeh.onrender.com/api/user/updateprofile/${currentUser.rest._id}`,
         formData,
         {
           headers: {

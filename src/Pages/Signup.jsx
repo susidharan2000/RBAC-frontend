@@ -12,7 +12,7 @@ const Signup = () => {
     const handleSubmit = async(e) => {
         e.preventDefault();
         try{
-            const response = await axios.post('http://localhost:4000/api/user/registeruser',formdata);
+            const response = await axios.post('https://rbac-backend-dxeh.onrender.com/api/user/registeruser',formdata);
             if(response.status === 200){
                 navigate('/signin');
             }

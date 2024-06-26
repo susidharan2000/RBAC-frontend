@@ -1,4 +1,3 @@
-import { async } from '@firebase/util';
 import axios from 'axios';
 import React, { useEffect,useState,useContext } from 'react';
 import { IoEyeSharp } from "react-icons/io5";
@@ -23,30 +22,32 @@ const Users = () => {
         setQuery(e.target.value);
     }
     // search Api
-    useEffect(()=>{
-        const fetchsearchUsers = async() =>{
+    useEffect(() => {
+        const fetchsearchUsers = async () => {
             try {
                 if (query.length === 0 || query.length > 2) {
-                    const res = await axios.get(`http://localhost:4000/api/user/search/username?q=${query}`);
+                    const res = await axios.get(`https://rbac-backend-dxeh.onrender.com/api/user/search/username?q=${query}`);
                     setData(res.data);
-                }
+                } 
             } catch (error) {
                 console.error("Error fetching search results:", error);
             }
         }
-        fetchsearchUsers();
-    },[query]);
+        if (query !== "" ) {
+            fetchsearchUsers();
+        } 
+    }, [query]);
     // get all users fetch data
     const fetchData = async () => {
         try {
-            const response = await axios.get("http://localhost:4000/api/user/getallusers", {
+            const response = await axios.get("https://rbac-backend-dxeh.onrender.com/api/user/getallusers", {
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${localStorage.getItem("Token")}`
                 }
             });
             setUsers(response.data.result);
-            //console.log(response.data.result[1]);
+            console.log(response.data.result);
         } catch (error) {
             console.error("Error fetching data:", error);
         }
@@ -79,6 +80,7 @@ const Users = () => {
         <div>
             <select onChange={(e) => setfilterrole(e.target.value)} className="ml-2 bg-gray-700 text-white  rounded">
                 <option value="all">All</option>
+                <option value="admin">Admin</option>
                 <option value="guest">Guest</option>
                 <option value="developer">Developer</option>
                 <option value="qaengineer">QA Engineer</option>
@@ -112,9 +114,9 @@ const Users = () => {
             </tr>
         </thead>
         <tbody>
-            {data.length > 0 ?(
+            {data.length > 0 && query !== 0 ?(
 data.map((user,index)=>{
-    return(
+    return(<>
         <tr key={index} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
             <td class="px-6 py-4">
             <img className='rounded-full h-12 w-12' src={user.profilePic} />
@@ -135,11 +137,12 @@ data.map((user,index)=>{
             <button type="button" class="text-white bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 flex flex-row gap-1" onClick={()=>handleClickView(user._id,user.role)}><IoEyeSharp size={20}/>View</button>
             </td>
         </tr>
+        </>
     )
 })
             ):(
                 filteredUsers.map((user,index)=>{
-                    return(
+                    return(<>
                         <tr key={index} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                             <td class="px-6 py-4">
                             <img className='rounded-full h-12 w-12' src={user.profilePic} />
@@ -160,6 +163,7 @@ data.map((user,index)=>{
                             <button type="button" class="text-white bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 flex flex-row gap-1" onClick={()=>handleClickView(user._id,user.role)}><IoEyeSharp size={20}/>View</button>
                             </td>
                         </tr>
+                        </>
                     )
                 })
             )}

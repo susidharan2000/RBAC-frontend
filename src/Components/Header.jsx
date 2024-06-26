@@ -51,16 +51,16 @@ const Header = () => {
                 <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start gap-10">
                   <div className="flex flex-shrink-0 items-center">
                   <span className="sm:text-xl md:text-xl self-center whitespace-nowrap text-sm font-semibold text-blue-500">
-            <Link to="/landingpage">Tech Solutions Inc.</Link>
+            <Link to="/dashboard?tab=landingpage">Tech Solutions Inc.</Link>
             </span>
                   </div>
                   <div className="hidden sm:ml-6 sm:block px-10">
-  <div className="flex space-x-4 gap-7">
+  <div className="flex space-x-4 gap-7 text-gray-600">
   <NavLink
-  to="/dashboard"
+  to="/dashboard/?tab=landingpage"
   className="hover:border-b-2 hover:text-blue-500 hover:border-blue-500 py-5"
   activeClassName="border-b-2 text-blue-500 border-blue-500"
-  isActive={() => path === "/dashboard"}
+  isActive={() => path === "/dashboard/?tab=landingpage"}
 >
   Dashboard
 </NavLink>

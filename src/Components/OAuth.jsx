@@ -17,7 +17,7 @@ const OAuth = () => {
         provider.setCustomParameters({prompt:'select_account'});
         try {
          const result = await signInWithPopup(auth,provider)
-         const response = await axios.post('http://localhost:4000/api/user/googleauth',
+         const response = await axios.post('https://rbac-backend-dxeh.onrender.com/api/user/googleauth',
          {
             name:result.user.displayName,
             email:result.user.email,

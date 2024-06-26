@@ -22,7 +22,7 @@ const HomeIntro = () => {
         <div className='flex flex-row gap-5'>
         <div>
           <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            <Link to='signup'>Sign Up</Link>
+            <Link to='/signup'>Sign Up</Link>
           </button>
         </div>
         <div>
