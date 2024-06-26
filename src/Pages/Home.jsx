@@ -27,8 +27,6 @@ const Home = () => {
   const [userId, setUserId] = useState(null);
   const [role, setRole] = useState("");
   const { currentUser } = useSelector((state) => state.user);
-  //console.log(currentUser);
-  //console.log(userId);
   return (
     <>
       <mycontext.Provider value={{ userId, setUserId, role, setRole }}>
