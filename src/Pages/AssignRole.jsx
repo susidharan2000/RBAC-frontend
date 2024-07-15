@@ -101,9 +101,11 @@ const AssignRole = () => {
                         
                     >
                         <option value="admin">Admin</option>
-                        <option value="developer">Developer</option>
-                        <option value="qaengineer">QA Engineer</option>
-                        <option value="supportspecialist">Support Specialist</option>
+                        <option value="ProjectManager">Project Manager</option>
+                        <option value="UIdeveloper">UI Developer</option>
+                        <option value="FrontendDeveloper">Frontend Developer</option>
+                        <option value="DBadmin">DB Admin</option>
+                        <option value="BackendDeveloper">Backend Developer</option>
                     </select>
                     <button
                         type="submit"

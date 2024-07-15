@@ -11,6 +11,12 @@ import CreateTask from './CreateTask';
 import AssignTask from './AssignTask';
 import { useSelector } from 'react-redux';
 import Developertask from './Developertask';
+import ChatPage from './ChatPage';
+import Projects from './Projects';
+import CreateProject from './CreateProject';
+import Myproject from './Myproject';
+import PMTasks from './PMTasks';
+import Team from './Team';
 const Dashboard = () => {
   const {currentUser} = useSelector((state)=>state.user);
     const location = useLocation();
@@ -34,6 +40,8 @@ const Dashboard = () => {
   </div>):
   (<div className='mt-8 w-full mr-10'>
   {(tab === "" && currentUser.rest.role === "admin") && <Landingpage />}
+  {(tab === "" && currentUser.rest.role === "ProjectManager") && <Landingpage />}
+  {(tab === "pmDB" && currentUser.rest.role === "ProjectManager") && <Landingpage />}
   {(tab === "landingpage" && currentUser.rest.role === "admin") && <Landingpage />}
   {(tab === "usertask" && currentUser.rest.role !== "admin" ) && <Developertask />}
   {tab === "inbox" && <Inbox />}
@@ -41,6 +49,12 @@ const Dashboard = () => {
   {tab === "createtask" && <CreateTask />}
   {tab === `Assignrole/${userId}` && <AssignRole /> }
   {tab === `Assigntask/${userId}` && <AssignTask />}
+  {tab === "project" && <Projects />}
+  {tab === "chat" && <ChatPage />}
+  {tab === "createproject" && <CreateProject />}
+  {tab === "myproject" && <Myproject />}
+  {tab === "PMTasks" && <PMTasks />}
+  {tab === "team" && <Team />}
 </div>)
 }
 </div>

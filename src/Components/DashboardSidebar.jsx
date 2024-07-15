@@ -6,6 +6,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { SignOutSuccess } from "../Redux/Slice/UserSlice";
 import { IoCreateSharp } from "react-icons/io5";
 import { GoTasklist } from "react-icons/go";
+import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
+import { GrProjects } from "react-icons/gr";
+import { RiTeamFill } from "react-icons/ri";
 const DashboardSidebar = () => {
   const { currentUser } = useSelector((state) => state.user);
   const [tab, settab] = useState("");
@@ -65,6 +68,18 @@ const DashboardSidebar = () => {
             </Link>
           </Sidebar.Item>
 
+
+          {(currentUser.rest.role !== "admin" && currentUser.rest.role !== "ProjectManager" && currentUser.rest.role !== "guest") && (
+            <Sidebar.Item active={tab === "team"} as="div">
+              <Link to="./?tab=team">
+                <div className="flex gap-4 text-gray-500">
+                <RiTeamFill size={28} />
+                  Team
+                </div>
+              </Link>
+            </Sidebar.Item>
+          )}
+
           {currentUser.rest.role === "admin" && (
             <Sidebar.Item active={tab === "users"} as="div">
               <Link to="./?tab=users">
@@ -75,9 +90,20 @@ const DashboardSidebar = () => {
               </Link>
             </Sidebar.Item>
           )}
-          {currentUser.rest.role === "admin" && (
-            <Sidebar.Item active={tab === "createtask"} as="div">
-              <Link to="./?tab=createtask">
+          {currentUser.rest.role === "ProjectManager" && (
+            <Sidebar.Item active={tab === "myproject"} as="div">
+              <Link to="./?tab=myproject">
+                <div className="flex gap-4 text-gray-500">
+                  <GrProjects size={19} />
+                  My project
+                </div>
+              </Link>
+            </Sidebar.Item>
+          )}
+
+          {currentUser.rest.role === "ProjectManager" && (
+            <Sidebar.Item active={tab === "PMTasks"} as="div">
+              <Link to="./?tab=PMTasks">
                 <div className="flex gap-4 text-gray-500">
                   <IoCreateSharp size={28} />
                   Task
@@ -85,7 +111,7 @@ const DashboardSidebar = () => {
               </Link>
             </Sidebar.Item>
           )}
-          {currentUser.rest.role !== "admin" && (
+          {(currentUser.rest.role !== "admin" && currentUser.rest.role !== "ProjectManager") && (
             <Sidebar.Item active={tab === "devtasks"} as="div">
               <Link to="./?tab=usertask">
                 <div className="flex gap-4 text-gray-500">
@@ -95,6 +121,29 @@ const DashboardSidebar = () => {
               </Link>
             </Sidebar.Item>
           )}
+
+{currentUser.rest.role === "admin" && (
+            <Sidebar.Item active={tab === "project"} as="div">
+              <Link to="./?tab=project">
+                <div className="flex gap-4 text-gray-500">
+                <GrProjects size={20}/>
+                  Projects
+                </div>
+              </Link>
+            </Sidebar.Item>
+          )}
+{currentUser.rest.role !== "guest" && (
+            <Sidebar.Item active={tab === "chat"} as="div">
+              <Link to="./?tab=chat">
+                <div className="flex gap-4 text-gray-500">
+                <IoChatbubbleEllipsesOutline size={28}/>
+                  Chat
+                </div>
+              </Link>
+            </Sidebar.Item>
+          )}
+
+          
           <Sidebar.Item>
             <div
               className="flex gap-4 text-gray-500"

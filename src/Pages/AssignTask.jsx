@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { mycontext } from './Home';
 
 const AssignTask = () => {
+    const {projectId} = useContext(mycontext);
     const location = useLocation();
     const params = new URLSearchParams(location.search);
     const tab = params.get('tab');
@@ -24,9 +26,9 @@ const AssignTask = () => {
     });
 
     const handleSubmit = async(values, { resetForm }) => {
-        //console.log(values);
+        console.log(projectId);
         try{
-            const response = await axios.post(`https://rbac-backend-dxeh.onrender.com/api/task/create-task/${id}`,values,{
+            const response = await axios.post(`https://rbac-backend-dxeh.onrender.com/api/task/create-task/${id}/${projectId}`,values,{
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${localStorage.getItem("Token")}`

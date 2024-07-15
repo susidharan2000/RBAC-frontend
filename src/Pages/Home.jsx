@@ -22,14 +22,21 @@ import ResetPassword from "./ResetPassword";
 import CreateTask from "./CreateTask";
 import AssignTask from "./AssignTask";
 import Developertask from "./Developertask";
+import ChatPage from "./ChatPage";
+import Projects from "./Projects";
+import CreateProject from "./CreateProject";
+import Myproject from "./Myproject";
+import PMTasks from "./PMTasks";
 export const mycontext = createContext(null);
 const Home = () => {
   const [userId, setUserId] = useState(null);
+  const [projectId, setProjectId] = useState(null);
   const [role, setRole] = useState("");
   const { currentUser } = useSelector((state) => state.user);
+  const [projectteam,setProjectTeam] = useState([]);
   return (
     <>
-      <mycontext.Provider value={{ userId, setUserId, role, setRole }}>
+      <mycontext.Provider value={{ userId, setUserId, role, setRole,projectteam,setProjectTeam ,projectId, setProjectId}}>
         <BrowserRouter>
           {currentUser === null ? <HomeHeader /> : <Header />}
           <Routes>
@@ -51,13 +58,18 @@ const Home = () => {
               <Route path="/teams" element={<Teams />} />
               <Route path="/inbox" element={<Inbox />} />
               <Route path="/devtasks" element={<Developertask />} />
+              <Route path="/project" element={<Projects />} />
+              <Route path="/chat" element={<ChatPage />} />
+              <Route path="/myproject" element={<Myproject />} />
+              <Route path="/createtask" element={<CreateTask />} />
+              <Route path="/Assigntask/:id" elelement={<AssignTask />} />
+              <Route path="/PMTasks" element={<PMTasks />} />
             </Route>
             {/* Only Admin Routes */}
             <Route element={<OnlyAdminRoutes />}>
               <Route path="/users" element={<Users />} />
               <Route path="/Assignrole/:id" element={<AssignRole />} />
-              <Route path="/createtask" element={<CreateTask />} />
-              <Route path="/Assigntask/:id" elelement={<AssignTask />} />
+              <Route path="/createproject" elelement={<CreateProject/>} />
             </Route>
           </Routes>
         </BrowserRouter>
