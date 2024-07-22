@@ -1,4 +1,12 @@
 # RBAC(Role Based Access Control)
+
+## Login credentials for all roles
+- Admin:(email:jhon@gmail.com , password:jhon123)
+- projectManager:(email:red@gmail.com , password:red123)
+- UIDeveloper:(email:chuck@gmail.com, password:chuck123)
+- FrontendDeveloper:(email:bomb@gmail.com , password:bomb123)
+- DB Admin:(email:ramasamy@gmail.com , password:ramasamy123)
+- Backend Developer:(email:siva@gmail.com , password:siva123)
 ## Project Overview
 - This project is a web application built using React.js and React Router for client-side routing. It includes features like user authentication, private routes, and admin-specific routes. Redux is used for state management, and various components handle different functionalities such as user management, task assignment, and messaging.
 ## Project Structure
