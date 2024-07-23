@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { mycontext } from '../Pages/Home';
 import { io} from 'socket.io-client';
 
-const SOCKET_SERVER_URL = 'http://localhost:4000';
+const SOCKET_SERVER_URL = 'https://rbac-backend-dxeh.onrender.com';
 let selectedChat;
 
 const MessageBody = ({ chat }) => {
@@ -68,7 +68,7 @@ return () => {
     useEffect(() => {
         const fetchMessages = async () => {
             try {
-                const response = await axios.get(`http://localhost:4000/api/message/chat/${chat._id}`, {
+                const response = await axios.get(`https://rbac-backend-dxeh.onrender.com/api/message/chat/${chat._id}`, {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${localStorage.getItem('Token')}`,
@@ -106,7 +106,7 @@ return () => {
             content: contentMessage
         };
         try {
-            const response = await axios.post(`http://localhost:4000/api/message/sendMessage`, payload, {
+            const response = await axios.post(`https://rbac-backend-dxeh.onrender.com/api/message/sendMessage`, payload, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${localStorage.getItem('Token')}`,

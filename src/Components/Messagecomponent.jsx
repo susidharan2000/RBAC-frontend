@@ -11,7 +11,7 @@ const Messagecomponent = ({id}) => {
     const [chat, setChat] = useState([]);
     useEffect(()=>{
         const fetchchat = async()=>{
-            const response = await axios.get(`http://localhost:4000/api/chat/getChatById/${id}`,{
+            const response = await axios.get(`https://rbac-backend-dxeh.onrender.com/api/chat/getChatById/${id}`,{
                 headers:{
                                     'Content-Type':'application/json',
                                     'Authorization': `Bearer ${localStorage.getItem("Token")}`,

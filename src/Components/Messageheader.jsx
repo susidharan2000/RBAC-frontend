@@ -88,7 +88,7 @@ const Messageheader = ({ chat }) => {
     //console.log(payload);
     try {
       const response = await axios.put(
-        `http://localhost:4000/api/chat/renamegroup`,
+        `https://rbac-backend-dxeh.onrender.com/api/chat/renamegroup`,
         payload,
         {
           headers: {
@@ -116,7 +116,7 @@ const handleClickaddUser = async (userId) => {
     if(!chat.users.some((user)=>user._id === userId)) {
         try {
             const response = await axios.put(
-              `http://localhost:4000/api/chat/addgroup`,
+              `https://rbac-backend-dxeh.onrender.com/api/chat/addgroup`,
               payload,
               {
                 headers: {
@@ -143,7 +143,7 @@ const handleClickaddUser = async (userId) => {
     if(id !== chat.groupAdmin){
         try {
             const response = await axios.put(
-              `http://localhost:4000/api/chat/removefromgroup`,
+              `https://rbac-backend-dxeh.onrender.com/api/chat/removefromgroup`,
               payload,
               {
                 headers: {

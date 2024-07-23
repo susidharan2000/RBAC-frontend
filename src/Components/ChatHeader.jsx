@@ -40,7 +40,7 @@ const ChatHeader = () => {
     const payload = { userId: id };
     try {
       const response = await axios.post(
-        "http://localhost:4000/api/chat/accesschat",
+        "https://rbac-backend-dxeh.onrender.com/api/chat/accesschat",
         payload,
         {
           headers: {
@@ -75,7 +75,7 @@ const ChatHeader = () => {
         console.log(payload);
       try {
         const response = await axios.post(
-          "http://localhost:4000/api/chat/creategroup",
+          "https://rbac-backend-dxeh.onrender.com/api/chat/creategroup",
           payload,
           {
             headers: {
