@@ -34,9 +34,10 @@ const Home = () => {
   const [role, setRole] = useState("");
   const { currentUser } = useSelector((state) => state.user);
   const [projectteam,setProjectTeam] = useState([]);
+  const [chatToggle, setChatToggle] = useState(false);
   return (
     <>
-      <mycontext.Provider value={{ userId, setUserId, role, setRole,projectteam,setProjectTeam ,projectId, setProjectId}}>
+      <mycontext.Provider value={{ userId, setUserId, role, setRole,projectteam,setProjectTeam ,projectId, setProjectId,chatToggle, setChatToggle}}>
         <BrowserRouter>
           {currentUser === null ? <HomeHeader /> : <Header />}
           <Routes>
